@@ -1,12 +1,14 @@
-print('')
-print("")
-print(""" """)
-print(''' ''')
+# -*- coding:utf-8 -*-
+
+from flask import Flask
+
+app = Flask(__name__)
 
 
-'''
-여러줄
-'''
+@app.route('/')
+def index():
+    return 'hello'
 
 
-# 한 줄 
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port = '5000', debug=True)

@@ -3,9 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+<style>
+    .login_box{
+        width:500px;
+        height:350px;
+        background-color:#5882FA;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+    }
+    .login_box_input{
+        width:450px;
+        height:50px;
+        margin:50px auto;
+    }
+    .login_p{
+        text-align:center;
+    }
+    .login_button{
+        width:80px;
+    }
+</style>
 <body>
-<h1></h1>
-<h1>hansol</h1>
+    <div class="login_box">
+        <form action="/login" method="POST">
+            <input id="userid" type="text" name="userid" placeholder="ID" class="form-control login_box_input" >
+            <input id="password" type="password" name="password" placeholder="PASSWORD" class="form-control login_box_input">
+            <p class="login_p">
+                <button type="submit" class="btn btn-warning login_button">Login</button>
+            </p>
+        </form>
+    </div>
 </body>
+<script>
+
+</script>
 </html>

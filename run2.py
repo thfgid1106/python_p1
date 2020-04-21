@@ -4,22 +4,20 @@ import os
 from flask import Flask, render_template, request
 from models import *
 
-
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index2.html")
 
 
-@app.route('/login', methods=["POST"])
-def login():
-    userid = request.form["userid"]
-    password = request.form["password"]
-    print(userid)
-    print(password)
-    return "Success, login"
+@app.route('/information', methods=['POST'])
+def information():
+    username = request.form["username"]
+    birth = request.form["birth"]
+    major = request.form["major"]
+    return render_template("action.html", username=username, birth=birth, major=major)
 
 
 if __name__ == "__main__":
@@ -35,8 +33,4 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
 
-    app.run(host="127.0.0.1", port = '5000', debug=True)
-
-
-
-
+    app.run(host="127.0.0.1", port='7000', debug=True)

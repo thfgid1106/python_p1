@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<style>
+    .information_box{
+        width:500px;
+        height:350px;
+        background-color:#A4A4A4;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+    }
+    .information_box_input{
+        width:350px;
+        height:40px;
+        margin:40px auto;
+    }
+    .login_p{
+        text-align:center;
+    }
+    .login_button{
+        width:80px;
+    }
+</style>
+<body>
+    <div class="information_box">
+        <form action="/information" method="POST">
+            <input id="username" type="text" name="username" placeholder="NAME" class="form-control information_box_input" >
+            <input id="birth" type="text" name="birth" placeholder="BIRTH" class="form-control information_box_input">
+            <input id="major" type="text" name="major" placeholder="MAJOR" class="form-control information_box_input">
+            <p class="login_p">
+                <button type="submit" class="btn btn-primary">Finish</button>
+            </p>
+        </form>
+    </div>
+</body>
+<script>
+
+</script>
+</html>

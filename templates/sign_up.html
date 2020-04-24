@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <h3>회원가입</h3>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/sign_up" method="POST">
+                {{ sign_up_form.csrf_token }}
+                <div class="form-group">
+                    {{ sign_up_form.inputName.label('이름') }}
+                    {{ sign_up_form.inputName(type="text", class="form-control", placeholder="이름을 입력하세요.") }}
+                </div>
+               <div class="form-group">
+                    {{ sign_up_form.inputEmail.label('e-mail') }}
+                    {{ sign_up_form.inputEmail(type="email", class="form-control", placeholder="이메일을 입력하세요.") }}
+                </div>
+               <div class="form-group">
+                    {{ sign_up_form.inputPassword.label('비밀번호') }}
+                    {{ sign_up_form.inputPassword(type="password", class="form-control", placeholder="비밀번호를 입력하세요.") }}
+                </div>
+               <div class="form-group">
+                    {{ sign_up_form.inputPasswordCheck.label('비밀번호 확인') }}
+                    {{ sign_up_form.inputPasswordCheck(type="password", class="form-control", placeholder="비밀번호를 다시 한 번 입력하세요.") }}
+                </div>
+               <div class="form-group">
+                    {{ sign_up_form.inputPhone.label('핸드폰') }}
+                    {{ sign_up_form.inputPhone(type="text", class="form-control", placeholder="핸드폰 번호를 입력하세요.") }}
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">회원가입</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+
+    <!-- 부트스트랩 CDN URL : https://getbootstrap.com/docs/3.4/getting-started/ -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+
+    <!-- Jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
+</head>
+<style>
+    .login_box{
+        width:500px;
+        height:350px;
+        background-color:#D0A9F5;
+        position:absolute;
+        top:50%; left:50%;
+        transform:translate(-50%,-50%);
+    }
+    .login_box_input{
+        width:450px;
+        height:50px;
+        margin:50px auto;
+    }
+    .login_p{
+        text-align:center;
+    }
+    .login_button{
+        width:80px !important;
+    }
+</style>
+<body>
+    <div class="login_box">
+        <form action="/login" method="POST">
+            <input id="userid" type="text" name="userid" placeholder="ID" class="form-control login_box_input">
+            <input id="password" type="password" name="password" placeholder="Password" class="form-control login_box_input">
+            <p class="login_p">
+                <button type="submit" class="btn btn-default login_button">Login</button>
+            </p>
+        </form>
+    </div>
+</body>
+<script>
+
+</script>
+</html>

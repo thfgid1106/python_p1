@@ -2,9 +2,9 @@
 
 
 import os
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from models import *
-from forms import SignUp
+from forms import SignUp, SignIn
 from flask_wtf.csrf import CsrfProtect
 
 app = Flask(__name__)
@@ -17,13 +17,19 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/sign_in')
+@app.route('/sign_in', methods=['GET', "POST"])
 def sign_in():
     '''
     로그인 화면
     '''
+    sign_in_form = SignIn()
+    if sign_in_form.validate_on_submit():
+        inputEmail = sign_in_form.data.get("inputEmail")
+        inputPassword = sign_in_form.data.get("inputPassword")
+        print(inputEmail, inputPassword)
 
-    return render_template('sign_in.html')
+        return redirect("/")
+    return render_template('sign_in.html', sign_in_form=sign_in_form)
 
 
 @app.route('/sign_up', methods=['GET', 'POST'])
@@ -38,15 +44,18 @@ def sign_up():
         inputPassword = sign_up_form.data.get("inputPassword")
         inputPhone = sign_up_form.data.get("inputPhone")
 
-        user = User()
-        user.name = inputName
-        user.email = inputEmail
-        user.password = inputPassword
-        user.phone = inputPhone
-        db.session.add(user)
-        db.session.commit()
-        return redirect("/")
-
+        email_check = db.session.query(User).filter(User.email == inputEmail).first()
+        if email_check is None:
+            user = User()
+            user.name = inputName
+            user.email = inputEmail
+            user.password = inputPassword
+            user.phone = inputPhone
+            db.session.add(user)
+            db.session.commit()
+            return redirect("/")
+        else:
+            flash("중복된 이메일입니다.", "email_error")
 
     return render_template('sign_up.html', sign_up_form=sign_up_form)
 

@@ -7,8 +7,10 @@
 {% block body %}
 
     <div class="container">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="page-header">
+            <div class="col-md-6 col-md-offset-3">
             <h3>회원가입</h3>
+            </div>
         </div>
         <div class="col-md-6 col-md-offset-3">
             <form action="/sign_up" method="POST">
@@ -19,7 +21,7 @@
                 </div>
                <div class="form-group">
                     {{ sign_up_form.inputEmail.label('e-mail') }}
-                    {{ sign_up_form.inputEmail(type="email", class="form-control", placeholder="이메일을 입력하세요.") }}
+                    {{ sign_up_form.inputEmail(type="email", class="form-control email_error", placeholder="이메일을 입력하세요.") }}
                 </div>
                <div class="form-group">
                     {{ sign_up_form.inputPassword.label('비밀번호') }}
@@ -39,6 +41,16 @@
             </form>
         </div>
     </div>
+    {% with msg_all = get_flashed_messages(with_categories = true) %}
+        {% if msg_all %}
+            {% for category, msg in msg_all %}
+                <script>
+                    alert('{{msg}}')
+                    $("."+'{{category}}').css("border", "1px solid red")
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 {% endblock %}
 {% block script %}
 {% endblock %}

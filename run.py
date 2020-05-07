@@ -69,26 +69,26 @@ def sign_up():
 
     return render_template('sign_up.html', sign_up_form=sign_up_form)
 
+# 현재 파일이 있는 절대 경로 반환
+basedir = os.path.abspath(os.path.dirname(__file__))
+# basedir 경로에 db.sqlite 라는 데이터베이스 생성
+dbfile = os.path.join(basedir, 'db.sqlite')
+
+# flask에서 사용할 데이터베이스의 경로 설정 sqlite3는 sqlite:/// 시작
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbfile
+# SQLALCHEMY_COMMIT_ON_TEARDOWN : app경로 이용 시 자동 commit
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+# 추가적인 메모리 사용 방지를 위해 False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'This is Secret key'
+
+csrf = CsrfProtect()
+csrf.init_app(app)
+
+db.init_app(app)
+db.app = app
+with app.app_context():
+    db.create_all()
 
 if __name__ == "__main__":
-    # 현재 파일이 있는 절대 경로 반환
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    # basedir 경로에 db.sqlite 라는 데이터베이스 생성
-    dbfile = os.path.join(basedir, 'db.sqlite')
-
-    # flask에서 사용할 데이터베이스의 경로 설정 sqlite3는 sqlite:/// 시작
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + dbfile
-    # SQLALCHEMY_COMMIT_ON_TEARDOWN : app경로 이용 시 자동 commit
-    app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-    # 추가적인 메모리 사용 방지를 위해 False
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SECRET_KEY'] = 'This is Secret key'
-
-    csrf = CsrfProtect()
-    csrf.init_app(app)
-
-    db.init_app(app)
-    db.app = app
-    with app.app_context():
-        db.create_all()
     app.run(host='127.0.0.1', port='5000', debug=True)

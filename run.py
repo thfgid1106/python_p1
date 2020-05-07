@@ -2,7 +2,7 @@
 
 
 import os
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, session
 from models import *
 from forms import SignUp, SignIn
 from flask_wtf.csrf import CsrfProtect
@@ -14,6 +14,7 @@ def index():
     '''
     처음 사이트에 들어왔을 때 보여지는 메인 홈
     '''
+
     return render_template('index.html')
 
 
@@ -26,9 +27,18 @@ def sign_in():
     if sign_in_form.validate_on_submit():
         inputEmail = sign_in_form.data.get("inputEmail")
         inputPassword = sign_in_form.data.get("inputPassword")
-        print(inputEmail, inputPassword)
 
-        return redirect("/")
+        email_check = db.session.query(User).filter(User.email == inputEmail).first()
+        if email_check is None:
+            flash("존재하지 않는 이메일입니다.", "email_error")
+        else:
+           if email_check.password == inputPassword:
+               session['sign_in']=email_check.id
+
+               return redirect("/")
+           else:
+               flash("비밀번호가 일치하지 않습니다.", "password_error")
+
     return render_template('sign_in.html', sign_in_form=sign_in_form)
 
 
@@ -53,7 +63,7 @@ def sign_up():
             user.phone = inputPhone
             db.session.add(user)
             db.session.commit()
-            return redirect("/")
+            return redirect('/sign_in')
         else:
             flash("중복된 이메일입니다.", "email_error")
 
@@ -82,13 +92,3 @@ if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(host='127.0.0.1', port='5000', debug=True)
-
-
-
-
-
-
-
-
-
-
